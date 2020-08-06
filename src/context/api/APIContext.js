@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from 'react';
+import axios from 'axios';
 import initialState from './state';
 import apiReducer from './reducer';
 
@@ -7,26 +8,40 @@ export const APIContext = createContext();
 const APIContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(apiReducer, initialState);
 
-  function sendMessage(content) {
-    // set is loading
-    // call api
-    // state call success (code/link, isloading)
-    // state call error (errorstate, isloading)
+  function sendMessage(text) {
+    dispatch({ type: 'POST_START' });
+
+    axios
+      .post('https://file.io', { text })
+      .then((response) => {
+        dispatch({ type: 'POST_SUCCESS', payload: response });
+      })
+      .catch((error) => {
+        dispatch({ type: 'POST_ERROR', payload: error });
+      });
   }
 
   function readMessage(id) {
-    // set is loading
-    // call api
-    // state call success (content, is loading)
-    // state call error (errorstate, is loading)
+    dispatch({ type: 'GET_START' });
+
+    axios
+      .get(`https://file.io/${id}`)
+      .then((response) => {
+        dispatch({ type: 'GET_SUCCESS', payload: response });
+      })
+      .catch((error) => {
+        dispatch({ type: 'GET_ERROR', payload: error });
+      });
   }
 
   function destroyMessage() {
-    // reset state + state for showing destroyed-message
+    dispatch({ type: 'DESTROY_MESSAGE' });
   }
 
   return (
-    <APIContext.Provider value={{ state, dispatch }}>
+    <APIContext.Provider
+      value={{ state, sendMessage, readMessage, destroyMessage }}
+    >
       {children}
     </APIContext.Provider>
   );
