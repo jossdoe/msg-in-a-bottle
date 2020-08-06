@@ -31,6 +31,12 @@ const APIContextProvider = ({ children }) => {
 
     fetch(`https://file.io/${id}`)
       .then((response) => {
+        if (response.status === 404) return '404 Error';
+        if (response.status === 429) return '429 Too many requests';
+        return response.text();
+      })
+      .then((response) => {
+        console.log(response);
         dispatch({ type: 'GET_SUCCESS', payload: response });
       })
       .catch((error) => {
