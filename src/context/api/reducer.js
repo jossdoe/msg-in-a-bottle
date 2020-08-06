@@ -3,7 +3,7 @@ import initialState from './state';
 function apiReducer(state, action) {
   switch (action.type) {
     case 'POST_START':
-      return { ...state, isLoading: true, postError: null, postResponse: {} };
+      return { ...state, isLoading: true, postError: null, postResponse: null };
 
     case 'POST_SUCCESS':
       return {
@@ -17,7 +17,7 @@ function apiReducer(state, action) {
       return { ...state, isLoading: false, postError: action.payload };
 
     case 'GET_START':
-      return { ...state, isLoading: true, getError: null, getResponse: {} };
+      return { ...state, isLoading: true, getError: null, getResponse: null };
 
     case 'GET_SUCCESS':
       return {

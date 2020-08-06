@@ -1,9 +1,9 @@
 const initialState = {
   isLoading: false,
-  postResponse: {},
+  postResponse: null,
   postError: null,
   postId: null,
-  getResponse: {},
+  getResponse: null,
   getError: null,
   getId: null,
   messageDestroyed: false

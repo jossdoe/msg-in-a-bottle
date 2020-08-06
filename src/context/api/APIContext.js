@@ -11,8 +11,14 @@ const APIContextProvider = ({ children }) => {
   function sendMessage(text) {
     dispatch({ type: 'POST_START' });
 
-    axios
-      .post('https://file.io', { text })
+    fetch('https://file.io', {
+      body: `text=${text}`,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST'
+    })
+      .then((response) => response.json())
       .then((response) => {
         dispatch({ type: 'POST_SUCCESS', payload: response });
       })
@@ -24,8 +30,7 @@ const APIContextProvider = ({ children }) => {
   function readMessage(id) {
     dispatch({ type: 'GET_START' });
 
-    axios
-      .get(`https://file.io/${id}`)
+    fetch(`https://file.io/${id}`)
       .then((response) => {
         dispatch({ type: 'GET_SUCCESS', payload: response });
       })
