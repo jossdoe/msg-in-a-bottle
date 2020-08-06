@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from 'react';
-import axios from 'axios';
 import initialState from './state';
 import apiReducer from './reducer';
 
