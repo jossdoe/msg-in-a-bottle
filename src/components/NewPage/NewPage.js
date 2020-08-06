@@ -17,8 +17,15 @@ const NewPage = () => {
     sendMessage(inputValue);
   };
 
-  if (postResponse) return <div>{JSON.stringify(postResponse)}</div>;
+  if (postResponse) {
+    const newLink = `${window.location.protocol}//${window.location.hostname}/read/${postResponse.key}`;
 
+    return (
+      <div>
+        <a href={newLink}>{newLink}</a>
+      </div>
+    );
+  }
   if (postError) return <div>{JSON.stringify(postError)}</div>;
 
   return (
