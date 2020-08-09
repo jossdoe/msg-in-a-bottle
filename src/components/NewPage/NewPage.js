@@ -43,7 +43,7 @@ const NewPage = () => {
   }
 
   if (postError) {
-    console.log(postError);
+    console.error(postError);
     const onClickHandler = () => resetState();
 
     return (
