@@ -33,6 +33,9 @@ function apiReducer(state, action) {
     case 'DESTROY_MESSAGE':
       return { ...initialState, messageDestroyed: true };
 
+    case 'RESET_STATE':
+      return { ...initialState };
+
     default:
       return { ...state };
   }

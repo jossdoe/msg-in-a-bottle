@@ -48,9 +48,13 @@ const APIContextProvider = ({ children }) => {
     dispatch({ type: 'DESTROY_MESSAGE' });
   }
 
+  function resetState() {
+    dispatch({ type: 'RESET_STATE' });
+  }
+
   return (
     <APIContext.Provider
-      value={{ state, sendMessage, readMessage, destroyMessage }}
+      value={{ state, resetState, sendMessage, readMessage, destroyMessage }}
     >
       {children}
     </APIContext.Provider>

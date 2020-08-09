@@ -5,10 +5,11 @@ import MainPage from 'components/MainPage';
 import NewPage from 'components/NewPage';
 import ReadPage from 'components/ReadPage';
 
+import { Content } from './App.styled';
+
 function App() {
   return (
-    <div className='App'>
-      <h1>Hello</h1>
+    <Content>
       <Switch>
         <Route path='/read/:id'>
           <ReadPage />
@@ -23,7 +24,7 @@ function App() {
           <div>404 - Page not found</div>
         </Route>
       </Switch>
-    </div>
+    </Content>
   );
 }
 
