@@ -1,3 +1,3 @@
 # msg in a bottle
 
-https://msg-in-a-bottle.vercel.app/
+https://msg-in-a-bottle.vercel.app
